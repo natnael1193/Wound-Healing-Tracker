@@ -23,7 +23,8 @@ def get_current_user(
         "name": user.name,
         "email": user.email,
         "id": str(user.id),  # Convert UUID to string
-        "created_at": user.created_at
+        "created_at": user.created_at,
+        "updated_at": user.updated_at
     }
     
     if not user:

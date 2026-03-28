@@ -12,6 +12,7 @@ class UserResponse(BaseModel):
     email: EmailStr
     name: str
     created_at: datetime
+    updated_at: datetime
 
     class Config:
         from_attributes = True
@@ -36,6 +37,7 @@ class UserMe(BaseModel):
     email: EmailStr
     name: str
     created_at: datetime
+    updated_at: datetime
     
     @classmethod
     def from_user(cls, user):
@@ -43,5 +45,6 @@ class UserMe(BaseModel):
             id=str(user.id),  # Convert UUID to string
             email=user.email,
             name=user.name,
-            created_at=user.created_at
+            created_at=user.created_at,
+            updated_at=user.updated_at
         )
