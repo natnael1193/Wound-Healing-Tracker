@@ -4,7 +4,7 @@ from passlib.context import CryptContext
 
 SECRET_KEY = "supersecretkey"  # change this in production!
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+ACCESS_TOKEN_EXPIRE_MINUTES = 3600
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
