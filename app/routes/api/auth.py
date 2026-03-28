@@ -12,5 +12,10 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login")
 def login(user: UserLoginRequest, db: Session = Depends(get_db)):
-        return login_user(db, user.email, user.password)
+    result = login_user(db, user.email, user.password)
+    
+    if not result:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+    
+    return result
 
