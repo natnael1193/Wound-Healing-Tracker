@@ -17,15 +17,16 @@ def get_current_user(
         user_id = payload.get("sub")
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
-
+    # return user_id
     user = db.query(User).filter(User.id == user_id).first()
     user = {
         "name": user.name,
         "email": user.email,
-        "id": user.id,
+        "id": str(user.id),  # Convert UUID to string
         "created_at": user.created_at
     }
     
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
     return user
+
