@@ -28,6 +28,6 @@ def error_response(
         content={
             "success": False,
             "message": message,
-            "data": jsonable_encoder(data)
+            "data": None
         }
     )
