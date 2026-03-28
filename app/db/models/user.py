@@ -15,4 +15,4 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     # Relationship to Wound (1 user → many wounds)
-    wounds = relationship("Wound", back_populates="user")
+    # wounds = relationship("Wound", back_populates="user", cascade="all, delete-orphan")
