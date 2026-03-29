@@ -13,7 +13,8 @@ class Wound(Base):
     location = Column(String, nullable=True)
     description = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     # Relationships
     user = relationship("User", back_populates="wounds")
-    records = relationship("WoundRecord", back_populates="wound", cascade="all, delete-orphan")
+    # records = relationship("WoundRecord", back_populates="wound", cascade="all, delete-orphan")

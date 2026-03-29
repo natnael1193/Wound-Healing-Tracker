@@ -5,6 +5,7 @@ from fastapi import Depends
 from sqlalchemy import text
 from app.routes.api.auth import router as auth_router
 from app.routes.api.user import router as user_router
+from app.routes.api.wounds import router as wounds_router
 
 app = fastapi.FastAPI()
 
@@ -21,6 +22,7 @@ def test_db_connection(db: Session = Depends(get_db)):
 # Import routes
 app.include_router(auth_router)
 app.include_router(user_router)
+app.include_router(wounds_router)
 
 
 
