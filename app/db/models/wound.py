@@ -17,4 +17,4 @@ class Wound(Base):
 
     # Relationships
     user = relationship("User", back_populates="wounds")
-    # records = relationship("WoundRecord", back_populates="wound", cascade="all, delete-orphan")
+    records = relationship("WoundRecord", back_populates="wound", cascade="all, delete-orphan")
