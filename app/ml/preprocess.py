@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 import cv2
 
-def preprocess(image: Image.Image):
+def preprocess(image):
     # Convert PIL to numpy array first for better performance
     img_array = np.array(image)
     
