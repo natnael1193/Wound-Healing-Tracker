@@ -4,7 +4,7 @@ from app.core.dependencies import get_current_user
 from app.db.dependency import get_db
 from app.utils.response import success_response
 from app.utils.storage import save_file
-from app.utils.image import save_mask
+from app.utils.image import save_mask, create_overlay
 from app.services.ai_service import predict_wound
 from app.services.record_service import create_record
 from app.db.models.wound import Wound
@@ -36,12 +36,16 @@ async def upload_record(
     # Save mask
     mask_path = save_mask(mask)
 
+    # Create overlay
+    overlay_path = create_overlay(image_path, mask)
+
     # Save record in DB
     record = create_record(
         db,
         wound_id=wound_id,
         image_url=image_path,
         mask_url=mask_path,
+        overlay_url=overlay_path,
         area=area
     )
 

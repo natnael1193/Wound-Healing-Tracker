@@ -15,8 +15,10 @@ class WoundRecord(Base):
     
     image_url = Column(String, nullable=False)
     mask_url = Column(String, nullable=True)      
+    overlay_url = Column(String, nullable=True)
     area = Column(Float, nullable=True)           
     healing_score = Column(Float, nullable=True)  
+
     
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
