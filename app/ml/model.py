@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "weights", "wound_unet_model.h5")
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "weights", "v1_wound_unet_model.keras")
 
 model = None
 
