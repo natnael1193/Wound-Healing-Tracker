@@ -8,6 +8,7 @@ from app.routes.api.user import router as user_router
 from app.routes.api.wounds import router as wounds_router
 from app.routes.api.records import router as records_router
 from app.routes.api.ai import router as ai_router
+from app.routes.api.analytic import router as analytics_router
 # from app.ml.model import preload_model
 
 
@@ -34,6 +35,7 @@ app.include_router(user_router)
 app.include_router(wounds_router)
 app.include_router(records_router)
 app.include_router(ai_router)
+app.include_router(analytics_router)
 
 
 
