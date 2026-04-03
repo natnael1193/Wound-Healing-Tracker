@@ -3,10 +3,10 @@ import numpy as np
 from uuid import uuid4
 import os
 
-MASK_DIR = "masks"
+MASK_DIR = "storage/masks"
 os.makedirs(MASK_DIR, exist_ok=True)
 
-OVERLAY_DIR = "overlays"
+OVERLAY_DIR = "storage/overlays"
 os.makedirs(OVERLAY_DIR, exist_ok=True)
 
 def save_mask(mask):

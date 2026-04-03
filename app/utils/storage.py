@@ -1,7 +1,7 @@
 import os
 from uuid import uuid4
 
-UPLOAD_DIR = "uploads"
+UPLOAD_DIR = "storage/uploads"
 
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
