@@ -1,3 +1,4 @@
+from uuid import UUID
 from sqlalchemy.orm import Session
 from app.db.models.record import WoundRecord
 
@@ -15,3 +16,10 @@ def create_record(db: Session, wound_id, image_url, mask_url, overlay_url, area)
     db.refresh(record)
 
     return record
+
+
+def get_records_list(db: Session, wound_id):
+    records = db.query(WoundRecord).filter(WoundRecord.wound_id == UUID(wound_id)).order_by(WoundRecord.created_at.desc()).all()
+    
+    return records
+

@@ -3,6 +3,7 @@ import fastapi
 from sqlalchemy.orm import Session
 from fastapi import Depends
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from app.routes.api.auth import router as auth_router
 from app.routes.api.user import router as user_router
@@ -14,6 +15,15 @@ from app.routes.api.analytic import router as analytics_router
 
 
 app = fastapi.FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 # @app.on_event("startup")
 # async def startup_event():
