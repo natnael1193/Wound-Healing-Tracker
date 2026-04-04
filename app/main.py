@@ -2,6 +2,7 @@ from app.db.dependency import get_db
 import fastapi
 from sqlalchemy.orm import Session
 from fastapi import Depends
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from app.routes.api.auth import router as auth_router
 from app.routes.api.user import router as user_router
@@ -37,6 +38,11 @@ app.include_router(records_router)
 app.include_router(ai_router)
 app.include_router(analytics_router)
 
+# Serve static files
+app.mount("/storage", StaticFiles(directory="storage"), name="storage")
+app.mount("/uploads", StaticFiles(directory="storage/uploads"), name="uploads")
+app.mount("/masks", StaticFiles(directory="storage/masks"), name="masks")
+app.mount("/overlays", StaticFiles(directory="storage/overlays"), name="overlays")
 
 
 
