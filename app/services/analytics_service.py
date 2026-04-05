@@ -1,4 +1,3 @@
-from sqlalchemy.orm import Session
 from app.db.models.record import WoundRecord
 
 def get_wound_progress(db, wound_id):
@@ -28,3 +27,7 @@ def get_wound_progress(db, wound_id):
         })
 
     return timeline
+
+
+ 
+    
