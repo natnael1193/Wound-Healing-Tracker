@@ -1,0 +1,61 @@
+from app.db.dependency import get_db
+import fastapi
+from sqlalchemy.orm import Session
+from fastapi import Depends
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
+from app.routes.api.auth import router as auth_router
+from app.routes.api.user import router as user_router
+from app.routes.api.wounds import router as wounds_router
+from app.routes.api.records import router as records_router
+from app.routes.api.ai import router as ai_router
+from app.routes.api.analytic import router as analytics_router
+# from app.ml.model import preload_model
+
+
+app = fastapi.FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
+
+# @app.on_event("startup")
+# async def startup_event():
+#     """Initialize application components"""
+#     preload_model()
+
+
+@app.get("/test-db")
+def test_db_connection(db: Session = Depends(get_db)):
+    result = db.execute(text("SELECT 1")).fetchone()
+    print(result)   
+    return {"db_connection": result[0]}
+
+
+
+
+# Import routes
+app.include_router(auth_router)
+app.include_router(user_router)
+app.include_router(wounds_router)
+app.include_router(records_router)
+app.include_router(ai_router)
+app.include_router(analytics_router)
+
+# Serve static files
+app.mount("/storage", StaticFiles(directory="storage"), name="storage")
+app.mount("/uploads", StaticFiles(directory="storage/uploads"), name="uploads")
+app.mount("/masks", StaticFiles(directory="storage/masks"), name="masks")
+app.mount("/overlays", StaticFiles(directory="storage/overlays"), name="overlays")
+
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
