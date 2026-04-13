@@ -41,6 +41,8 @@ async def predict_wound(image_path: str):
     print("Running prediction...")
     try:
         pred = model.predict(img)
+
+        print("pred", pred)
         
         print(f"✅ Prediction successful!")
         print(f"Prediction shape: {pred.shape}")
@@ -126,7 +128,7 @@ async def predict_wound_from_path(image_path: str):
         
         # Postprocess to get mask
         mask = postprocess(pred)
-        
+        print("mask", mask)
         # Calculate area
         area = float(np.sum(mask))
         
